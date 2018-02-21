@@ -9,4 +9,4 @@ http://mugtug.com/sketchpad
 Doesn't work. Drawing application.
 
 http://www.pirateslovedaisies.com/
-Game.
+Game. Was created using easeljs https://www.createjs.com/easeljs

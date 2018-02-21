@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Drawing Into the 2D Context</title>
+    <style type="text/css">
+        #canvas1 {
+            border: dotted 3px #000;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var theCanvas = document.getElementById('canvas1');
+            if (theCanvas && theCanvas.getContext) {
+                var ctx = theCanvas.getContext("2d");
+                if (ctx) {
+                    ctx.fillStyle = "#ddd";
+                    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Using Canvas Properties</h1>
+    <p>The canvas properties such as height and width can be manipulated. Use the toDataURL() and getContext() methods to perform
+        operations on the canvas.</p>
+    <canvas id="canvas1" width="400" height="300">Your browser does not support canvas.</canvas>
+</body>
+
+</html>
