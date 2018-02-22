@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Drawing Into the 2D Context</title>
+    <title>Colors and styles</title>
     <style type="text/css">
         #canvas1 {
             border: dotted 3px #000;
@@ -11,11 +11,15 @@
     <script>
         window.onload = function () {
             var theCanvas = document.getElementById('canvas1');
-            if (theCanvas && theCanvas.getContext) {
+            if (theCanvas && theCanvas.getContext) { // i.e. if it's true
                 var ctx = theCanvas.getContext("2d");
                 if (ctx) {
-                    ctx.fillStyle = "#ddd";
-                    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+                    ctx.fillStyle = "#0f0";
+                    ctx.fillRect(20, 20, 100, 100); // origin x, origin y, width, length
+
+                    ctx.lineWidth = 5;
+                    ctx.strokeStyle = "rgba(0,0,255,1)"; //maybe transparancy i.e. rgba used more with canvas
+                    ctx.strokeRect(20, 20, 100, 100); // origin x, origin y, width, length
                 }
             }
         }

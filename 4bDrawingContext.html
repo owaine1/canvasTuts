@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Colors and styles</title>
+    <title>Drawing Into the 2D Context</title>
     <style type="text/css">
         #canvas1 {
             border: dotted 3px #000;
@@ -12,14 +12,10 @@
         window.onload = function () {
             var theCanvas = document.getElementById('canvas1');
             if (theCanvas && theCanvas.getContext) {
-                var ctx = theCanvas.getContext("2d");
+                var ctx = theCanvas.getContext("2d"); // calling gerContext method, gets 2d  drawing api
                 if (ctx) {
-                    ctx.fillStyle = "#0f0";
-                    ctx.fillRect(20, 20, 100, 100);
-
-                    ctx.lineWidth = 5;
-                    ctx.strokeStyle = "rgba(0,0,255,1)";
-                    ctx.strokeRect(20, 20, 100, 100);
+                    ctx.fillStyle = "#ddd";
+                    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height); // 0,0 is origin
                 }
             }
         }
