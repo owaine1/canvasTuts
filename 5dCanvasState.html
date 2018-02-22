@@ -1,15 +1,57 @@
-<!DOCTYPE html>
 <html lang="en">
+<!-- TODO to here... -->
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Canvas State</title>
+    <title>Canvas States</title>
+    <style type="text/css">
+        #canvas1,
+        #canvas2,
+        #canvas3 {
+            border: dotted 3px #000;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var theCanvas = document.getElementById('canvas1');
+            if (theCanvas && theCanvas.getContext) {
+                var ctx = theCanvas.getContext("2d");
+
+                // 1st comment out restore & save and run
+                // 2nd uncomment restor & save and run
+                // set up some drawing information
+                ctx.strokeStyle = "#f00";
+                ctx.fillStyle = "#ff0";
+                ctx.lineWidth = 10;
+
+                // draw the first Rectangle
+                ctx.fillRect(25, 25, 100, 125);
+                ctx.strokeRect(25, 25, 100, 125);
+
+                // now, draw another rectangle with differentsections
+                ctx.save(); // this will save the current settings
+
+                ctx.strokeStyle = "#0f0";
+                ctx.fillStyle = "#00f";
+                ctx.lineWidth = 5;
+                ctx.fillRect(175, 25, 100, 125);
+                ctx.strokeRect(175, 25, 100, 125);
+
+                ctx.restore(); // now restore the orginal settings
+
+                // draw a stroked and filled rectangle
+                ctx.fillRect(325, 25, 100, 125);
+                ctx.strokeRect(325, 25, 100, 125);
+            }
+        }
+    </script>
 </head>
 
 <body>
-
+    <h1>Saving and Restoring the Canvas State</h1>
+    <p>This example shows how to manage the canvas state using save() and restore()</p>
+    <canvas id="canvas1" width="500" height="200">Your browser does not support canvas.</canvas>
 </body>
+
+</html>
 
 </html>
