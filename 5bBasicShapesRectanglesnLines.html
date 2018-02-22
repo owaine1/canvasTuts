@@ -3,7 +3,7 @@
 <!-- TODO to here... -->
 
 <head>
-    <title>Colors and styles</title>
+    <title>Basic Shapes Rectangles</title>
     <style type="text/css">
         #canvas1 {
             border: dotted 3px #000;
@@ -12,26 +12,39 @@
     <script>
         window.onload = function () {
             var theCanvas = document.getElementById('canvas1');
-            if (theCanvas && theCanvas.getContext) { // i.e. if it's true
+            if (theCanvas && theCanvas.getContext) {
                 var ctx = theCanvas.getContext("2d");
                 if (ctx) {
-                    ctx.fillStyle = "#0f0";
-                    ctx.fillRect(20, 20, 100, 100); // origin x, origin y, width, length
-
+                    // draw just a stroked rectangle
+                    ctx.StrokeStyle = "#00f";
                     ctx.lineWidth = 5;
-                    ctx.strokeStyle = "rgba(0,0,255,1)"; //maybe transparancy i.e. rgba used more with canvas
-                    ctx.strokeRect(20, 20, 100, 100); // origin x, origin y, width, length
+                    ctx.strokeRect(25, 25, 100, 125);
+
+                    // draw just a filled rectangle
+                    ctx.fillStyle = "#0f0";
+                    ctx.fillRect(175, 25, 100, 125);
+
+                    // draw a stroked and filled rectangle
+                    ctx.strokeStyle = "#f00";
+                    ctx.fillStyle = "#ff0";
+                    ctx.lineWidth = 10;
+                    ctx.fillRect(325, 25, 100, 125);
+                    ctx.strokeRect(325, 25, 100, 125);
+
+                    // clear a rectangle
+                    ctx.clearRect(15, 75, 450, 50);
                 }
             }
         }
+        // rectangle functions: clearRect(x,y,w,h); strokeRect(x,y,w,h); fillEct(x,y,w,h);
+        // line functions & attribs: moveTo(x,y); lineTo(x,y); lineWidth, lineCap, lineJoin, miterLimit has a 10 default, beginPath(), stroke(). All self-explanitory
     </script>
 </head>
 
 <body>
-    <h1>Using Canvas Properties</h1>
-    <p>The canvas properties such as height and width can be manipulated. Use the toDataURL() and getContext() methods to perform
-        operations on the canvas.</p>
-    <canvas id="canvas1" width="400" height="300">Your browser does not support canvas.</canvas>
+    <h1>Basic Shapes Rectangles</h1>
+    
+    <canvas id="canvas1" width="500" height="300">Your browser does not support canvas.</canvas>
 </body>
 
 </html>
