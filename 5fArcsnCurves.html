@@ -1,8 +1,10 @@
+<!DOCTYPE html>
+
 <html lang="en">
 <!-- TODO to here... -->
 
 <head>
-    <title>Drawing Paths</title>
+    <title>Arcs and Curves</title>
     <style type="text/css">
         #canvas1,
         #canvas2,
@@ -28,30 +30,29 @@
                     ctx.fillStyle = "red";
                     ctx.lineWidth = 5;
 
-                    // draw an open path (not closed)
+                    // stroke a quarter arc
                     ctx.beginPath();
-                    ctx.moveTo(25, 175);
-                    ctx.lineTo(50, 25);
-                    ctx.lineTo(125, 50);
-                    ctx.lineTo(175, 175);
+                    ctx.arc(50, 150, 100, 1.5 * Math.PI, 2 * Math.PI);
                     ctx.stroke();
 
-                    // draw a closed path
+                    // stroke a three-quater arc, going anti-clockwise
                     ctx.beginPath();
-                    ctx.moveTo(225, 175);
-                    ctx.lineTo(250, 25);
-                    ctx.lineTo(325, 50);
-                    ctx.lineTo(375, 175);
-                    ctx.closePath();
+                    ctx.arc(300, 150, 100, 0, 1.5 * Math.PI, false);
                     ctx.stroke();
 
-                    // draw another closed path
+                    // stroke and fill a circle
                     ctx.beginPath();
-                    ctx.moveTo(425, 175);
-                    ctx.lineTo(450, 25);
-                    ctx.lineTo(525, 50);
-                    ctx.lineTo(575, 175);
-                    ctx.fill()
+                    ctx.arc(500, 150, 100, 0, 1.5 * Math.PI, false);
+                    ctx.fill();
+                    ctx.stroke();
+
+                    // stroke and fill a circle using variable substitution
+                    // I'd do this as a function
+                    var degrees = 173;
+                    var radians = (Math.PI / 180) * degrees;
+                    ctx.beginPath();
+                    ctx.arc(800, 150, 100, 0, radians, false);
+                    ctx.fill();
                     ctx.stroke();
                 }
             }
@@ -60,9 +61,9 @@
 </head>
 
 <body>
-    <h1>Drawing Paths</h1>
+    <h1>Arcs and Curves</h1>
     <p>This example will draw paths, both open and closed</p>
-    <canvas id="canvas1" width="600" height="200">Your browser does not support canvas.</canvas>
+    <canvas id="canvas1" width="1000" height="300">Your browser does not support canvas.</canvas>
 </body>
 
 </html>
