@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<!-- TODO to here... -->
+
+<head>
+    <title>Rendering Text</title>
+    <style type="text/css">
+        #canvas1,
+        #canvas2,
+        #canvas3 {
+            border: dotted 3px #000;
+        }
+    </style>
+    <script>
+        // text functions and attributes
+        // font. Exactly like CSS
+        // textAlign // "start" (default), "end", "left", "right", "center"
+        // textBaseline // "top", "hanging", "middle", "alphabetic" (default),
+        // "ideographic" (mainly used for Chinese language etc.), "bottom"
+        // fillText(txt, x, y, [maxW]) render text @ x,y now wider than maxW
+        // strokeText(txt, x, y, [maxW]) render text @ x,y now wider than maxW
+        // measureText(text) Returns the dimension metrics of the string using the current font settings
+
+        window.onload = function () {
+            var theCanvas = document.getElementById('canvas1');
+            if (theCanvas && theCanvas.getContext) {
+                var ctx = theCanvas.getContext("2d");
+                if (ctx) {
+
+                    var theString = "Drawing Text on a Canvas";
+
+                    // draw a simple text string using the default settings
+                    ctx.fillText(theString, 20, 20);
+
+                    // draw the string with some font information
+                    ctx.font = "25pt Georgia";
+                    ctx.fillText(theString, 20, 60);
+
+                    // draw the string with a fillStyle color
+                    ctx.fillStyle = "blue";
+                    ctx.fillText(theString, 20, 100);
+
+                    // draw the string with both a stroke and a fillStyle
+                    ctx.font = "32pt Verdana";
+                    // ctx.textBaseline = "middle"; //toggle comment / uncomment to show effect 
+                    ctx.fillStyle = "yellow";
+                    ctx.strokeStyle = "rgba(0,255,0,.8)";
+                    ctx.fillText(theString, 20, 160);
+                    ctx.strokeText(theString, 20, 160);
+
+                    // use measureText to draw a line under the text
+                    var textW = ctx.measureText(theString);
+                    ctx.beginPath();
+                    ctx.strokeStyle = "black";
+                    ctx.moveTo(20, 170);
+                    ctx.lineTo(textW.width, 170);
+                    ctx.stroke();
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Rendering Text</h1>
+    <p>This example will draw bezier and quadratic curves, along with their control points so you can see how the curve is affected
+        by the control point.</p>
+    <canvas id="canvas1" width="1000" height="300">Your browser does not support canvas.</canvas>
+</body>
+
+</html>
+
+</html>
