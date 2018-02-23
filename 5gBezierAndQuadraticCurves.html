@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<!-- TODO to here... -->
+
+<head>
+    <title>Bezier and Quadratic Curves</title>
+    <style type="text/css">
+        #canvas1,
+        #canvas2,
+        #canvas3 {
+            border: dotted 3px #000;
+        }
+    </style>
+    <script>
+        // new function 
+        //angles are in radians. To convert degrees to radians: 
+        //var radians = (Math.PI / 180) * degrees; 
+        // arc(x,y,r,sA,eA,aC)
+        //sA start angle, eA end angle, aC is true if arc is anti-clockwise 
+        // arcTo(x1,y1,x2,y2,r) 
+        //closePath()
+
+        window.onload = function () {
+            var theCanvas = document.getElementById('canvas1');
+            if (theCanvas && theCanvas.getContext) {
+                var ctx = theCanvas.getContext("2d");
+                if (ctx) {
+                    // functions
+                    // bezierCurveTo(cx1, cy1, cx2, cy2, end1, end2) start already defined
+                    // c1s controlpoint1, c2s controlpoint2, ends are endx?, endy?
+                    // quadraticCurveTo(cx,cy,x,y) self explanitory
+                    ctx.strokeStyle = "blue";
+                    ctx.lineWidth = 5;
+
+                    // stroke a simple bezier curve
+                    ctx.beginPath();
+                    ctx.moveTo(50, 200);
+                    ctx.bezierCurveTo(50, 300, 200, 100, 200, 150);
+                    ctx.stroke();
+
+                    // now make the control points visible
+                    ctx.strokeStyle = "rgba(0, 0, 0, .25)";
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(50, 200);
+                    ctx.lineTo(50, 300);
+                    ctx.lineTo(200, 100);
+                    ctx.lineTo(200, 150);
+                    ctx.stroke();
+                    // the effect of changing controlpoints and lineTo to show where the controlpoints are could be expressed as a function
+
+                    // stroke a quadratic curve
+                    ctx.strokeStyle = "green";
+                    ctx.lineWidth = 5;
+                    ctx.beginPath();
+                    ctx.moveTo(400, 200);
+                    ctx.quadraticCurveTo(500, 100, 600, 150); // change same param to show controlpoint move (as below)
+                    ctx.stroke();
+
+                    // now make the controlpoints visible
+                    ctx.strokeStyle = "rgba(0, 0, 0, .25)";
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(400, 200);
+                    ctx.lineTo(500, 100); // change same param to show controlpoint move
+                    ctx.lineTo(600, 150);
+                    ctx.stroke();
+                    // the conttrolpoints visible really need a function as stated above
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Bezier and Quadratic Curves</h1>
+    <p>This example will draw bezier and quadratic curves, along with their control points so you can see how the curve is affected
+        by the control point.</p>
+    <canvas id="canvas1" width="1000" height="300">Your browser does not support canvas.</canvas>
+</body>
+
+</html>
+
+</html>
