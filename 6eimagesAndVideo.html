@@ -5,29 +5,56 @@
     <title>Images and Video</title>
     <link rel="stylesheet" href="css/style.css">
     <script>
-        // clip()  creates new clipping region, calculating intersection of the current clipping region and the area described by the current path. New clipping region replaces current clipping region.
+        // drawImage(srcImg, dx, dy) Draws the source image onto the destination canvas at the location point(dx, dy).
+        // drawImage(scrImg, dx, dy, dw, dh) Draws the source image onto the destination canvas at the location point (dx, dy),
+        // but scales the image to fit width dw and height dh.
+        // drawImage(scrImg, sx, sy, sw, sh, dx, dy, dw, dh) Draws the portion of the source image starting from point (sx, sy)
+        // and within the area defined by width sw and height sh onto to destination cancas at the location point (dx, dy),
+        // but scales the image to fit width dw and height dh
         window.onload = function () {
+            var srcImg = document.getElementById("img1");
             var theCanvas = document.getElementById('canvas1');
             if (theCanvas && theCanvas.getContext) {
                 var ctx = theCanvas.getContext("2d");
                 if (ctx) {
-                    // draw an image
-                    var srcImg = document.getElementById("img1");
-
-                    // create a circle clipping path
-                    // ctx.arc(ctx.canvas.width / 2, ctx.canvas.height / 2, 150, 0, 2 * Math.PI); // toggle these 2 on off with arbitrary clipping path
-                    // ctx.clip();
-
-                    // create an arbitrary clipping path
-                    ctx.beginPath();
-                    ctx.moveTo(105, 200);
-                    ctx.lineTo(250, 25);
-                    ctx.lineTo(525, 50);
-                    ctx.lineTo(475, 285);
-                    ctx.closePath();
-                    ctx.clip();
-
+                    // draw an image directly onto the canvas at the top left
                     ctx.drawImage(srcImg, 0, 0);
+                }
+            }
+            var theCanvas2 = document.getElementById('canvas2');
+            if (theCanvas2 && theCanvas2.getContext) {
+                var ctx = theCanvas2.getContext("2d");
+                if (ctx) {
+                    // draw an image directly onto the canvas at the top left
+                    // draw the image scaled down onto the canvas
+                    ctx.drawImage(srcImg, 50, 50, 350, 150);
+                }
+            }
+            var theCanvas3 = document.getElementById('canvas3');
+            if (theCanvas3 && theCanvas3.getContext) {
+                var ctx = theCanvas3.getContext("2d");
+                if (ctx) {
+                    // draw just a portion of the source image onto the canvas
+                    ctx.drawImage(srcImg, 350, 200, 125, 100, 50, 50, 125, 100);
+                }
+            }
+            var theCanvas4 = document.getElementById('canvas4');
+            if (theCanvas4 && theCanvas4.getContext) {
+                var ctx = theCanvas4.getContext("2d");
+
+
+                if (ctx) {
+                    // draw the video onto the canvas. We need to set an interval
+                    // in order to grab each frame from the video and paint ...
+                    console.log('hello');
+                    var srcVid = document.getElementById("vid1");
+                    srcVid.play();
+                    setInterval(function () {
+                        var theCanvas4 = document.getElementById('canvas4');
+                        var cxt = theCanvas4.getContext("2d");
+                        var srcVid = document.getElementById("vid1");
+                        ctx.drawImage(srcVid, 0, 0);
+                    }, 600);
                 }
             }
         }
@@ -36,13 +63,15 @@
 
 <body>
     <h1>Images and Video</h1>
-    <p>Clipping paths restrict drawing to a particular area of the canvas. Think of clipping paths as masks - areas where the
-        mask is empty show through, while areas where the mask is opaque do not.</p>
-    <p>Any path can be a clipping path. You simply draw the path as normal and then call the context's clip() function to create
-        one.
-    </p>
+    <p>Images can be drawn directly onto a canvas element in a variety of ways. Your code can draw an image directly from an
+        IMG or VIDEO element that is already in the page or loaded dynamically via script, or another canvas element can
+        be used as a source image</p>
     <canvas id="canvas1" width="700" height="300">Your browser does not support canvas.</canvas>
+    <canvas id="canvas2" width="700" height="300">Your browser does not support canvas.</canvas>
+    <canvas id="canvas3" width="700" height="300">Your browser does not support canvas.</canvas>
+    <canvas id="canvas4" width="700" height="300">Your browser does not support canvas.</canvas>
     <img id="img1" src="images/emerald_bay.jpg" width="715" height="315" style="display:none;" alt="lake surounded with fir trees and mountains in the distance. Looks cold with snow on the ground.">
+    <video id="vid1" src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" loop style="display:none;"></video>
 </body>
 
 </html>
