@@ -1,0 +1,40 @@
+<!-- 
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Transforming Objects Using Translate</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script>
+        // translate(x,y) simplest transform moves origin by x,y
+        // rotate
+        // along with a way to define your own free-form transforms (combo of above?)
+        // transforms effect all of the drawing operations that come after them, and they are additive-each transform is added to the previous one
+        // because they are additive, this is where saving and restoring canvas state can come in handy
+        window.onload = function () {
+            var srcImg = document.getElementById("img1");
+            var theCanvas = document.getElementById('canvas1');
+            if (theCanvas && theCanvas.getContext) {
+                var ctx = theCanvas.getContext("2d");
+                if (ctx) {
+                    ctx.fillStyle = "blue";
+                    ctx.fillRect(0, 0, 100, 50); // original rectangle
+
+                    // now translate the origin to the middle of the canvas
+                    ctx.translate(ctx.canvas.width / 2, ctx.canvas.height / 2); // translate rectangle
+
+                    ctx.fillRect(0, 0, 100, 50); // note coordinates 0,0 but because of translation, Rect draws at new location
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Transforming Objects Using Translate</h1>
+    <p></p>
+    <canvas id="canvas1" width="700" height="300">Your browser does not support canvas.</canvas>
+</body>
+
+</html>
