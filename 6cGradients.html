@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-    <title>Gradients</title>
+    <title>Clipping Paths</title>
     <style type="text/css">
         #canvas1,
         #canvas2,
@@ -22,7 +20,7 @@
                 var ctx = theCanvas.getContext("2d");
                 if (ctx) {
                     // create a linear gradient
-                    var linGrd = ctx.createLinearGradient(20, 20, 220, 280); //toggle 3rd arg 20 to 220 to see effect
+                    var linGrd = ctx.createLinearGradient(20, 20, 220, 280); //toggle 3rd param 20 to 220 to see effect
 
                     // add some colorstops: red to blue, blue to green
                     linGrd.addColorStop(0, "#f00"); // start with red at 0
