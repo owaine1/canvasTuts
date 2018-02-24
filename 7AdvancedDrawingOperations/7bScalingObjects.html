@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Scaling Objects</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script>
+        //  scale(x,y) scale drawing operations by multiples x and y
+        window.onload = function () {
+            var srcImg = document.getElementById("img1");
+            var theCanvas = document.getElementById('canvas1');
+            if (theCanvas && theCanvas.getContext) {
+                var ctx = theCanvas.getContext("2d");
+                if (ctx) {
+                    ctx.fillStyle = "blue";
+                    ctx.fillRect(0, 0, 100, 50); // original rectangle
+
+                    // now perform a scale transform and draw the same size rect again
+                    ctx.save();
+                    ctx.scale(1.5, 2);
+
+                    ctx.fillRect(125, 50, 100, 50);
+                    ctx.restore();
+                    // note scale and restore retain the  Rect before save and recall it at restore
+                    ctx.scale(.5, .5);
+                    ctx.fillRect(525, 50, 100, 50);
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Scaling Objects</h1>
+    <p></p>
+    <canvas id="canvas1" width="700" height="300">Your browser does not support canvas.</canvas>
+</body>
+
+</html>
