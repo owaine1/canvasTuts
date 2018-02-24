@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Rotating Objects</title>
     <link rel="stylesheet" href="../css/style.css">
@@ -12,9 +13,9 @@
             if (theCanvas && theCanvas.getContext) {
                 var ctx = theCanvas.getContext("2d");
                 if (ctx) {
-                     ctx.fillStyle = "blue"; // toggle these 4 on / off with next 8 lines to see difference
+                    ctx.fillStyle = "blue"; // toggle these 4 on / off with next 8 lines to see difference
                     ctx.fillRect(150, 30, 100, 50); // original rectangle
-                    ctx.rotate.(.5);
+                    ctx.rotate(.5);
                     ctx.fillRect(150, 30, 100, 50);
 
                     //ctx.translate(ctx.canvas.width/2, ctx.canvas.height/2); // draws a wheel with spokes like a bicycle
@@ -25,14 +26,16 @@
                     //ctx.moveTo(-100, 0);
                     //ctx.lineTo(100, 0);
                     //ctx.stroke();
-                    }
+                    // }
                 }
             }
-        } 
+        }
     </script>
 </head>
+
 <body>
     <h1>Rotating Objects</h1>
     <canvas id="canvas1" width="700" height="300">Your browser does not support canvas.</canvas>
 </body>
+
 </html>
