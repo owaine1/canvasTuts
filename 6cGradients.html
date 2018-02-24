@@ -1,4 +1,63 @@
-// Functions
-// createLinearGradient(x0,y0,x1,y1)  Defines linear gradient. Startes at pointx0,y0. Travels to x1,y1
-//CreateRadialGradient(x0,y0,r0,x1,y1,r1) Defines radial gradient. Center x0,y0. radius r0. Travels to circle center x1,y1, radiusr1.
-addColorStop(position, color) Adds colorstop at position floating point num 0.0 to 1.0
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Gradients</title>
+    <style type="text/css">
+        #canvas1,
+        #canvas2,
+        #canvas3 {
+            border: dotted 3px #000;
+        }
+    </style>
+    <script>
+        // Functions
+        // createLinearGradient(x0,y0,x1,y1)  Defines linear gradient. Startes at pointx0,y0. Travels to x1,y1
+        //CreateRadialGradient(x0,y0,r0,x1,y1,r1) Defines radial gradient. Center x0,y0. radius r0. Travels to circle center x1,y1, radiusr1.
+        // addColorStop(position, color) Adds colorstop at position floating point num 0.0 to 1.0
+        window.onload = function () {
+            var theCanvas = document.getElementById('canvas1');
+            if (theCanvas && theCanvas.getContext) {
+                var ctx = theCanvas.getContext("2d");
+                if (ctx) {
+                    // create a linear gradient
+                    var linGrd = ctx.createLinearGradient(20, 20, 220, 280); //toggle 3rd arg 20 to 220 to see effect
+
+                    // add some colorstops: red to blue, blue to green
+                    linGrd.addColorStop(0, "#f00"); // start with red at 0
+                    linGrd.addColorStop(.5, "#00f"); // put blue at the halfway point
+                    linGrd.addColorStop(1, "#0f0"); // finish with green
+
+                    // create a rectangle and fill it with the gradient
+                    ctx.fillStyle = linGrd;
+                    ctx.fillRect(20, 20, 200, 260);
+                    ctx.lineWidth = 3;
+                    ctx.strokeRect(20, 20, 200, 260);
+
+                    // create a radial gradient
+                    //1st 3args: 1st circle. Last 3args: last circle.
+                    var radGrd = ctx.createRadialGradient(525, 150, 20, 525, 150, 100); // toggle to (525, 150, 20, 525, 150, 100) / (500, 100, 20, 525, 150, 100)
+
+                    radGrd.addColorStop(0, "#f00"); // start with red at 0
+                    radGrd.addColorStop(.5, "#00f"); // put blue at the halfway point
+                    radGrd.addColorStop(1, "#0f0"); // finish with green
+                    ctx.fillStyle = radGrd;
+
+                    ctx.beginPath();
+                    ctx.arc(525, 150, 100, 0, 2 * Math.PI);
+                    ctx.stroke();
+                    ctx.fill();
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Gradients</h1>
+    <p>The HTML5 Canvas supports 2 kinds of gradients—linear and radial</p>
+    <canvas id="canvas1" width="650" height="300">Your browser does not support canvas.</canvas>
+</body>
+
+</html>
