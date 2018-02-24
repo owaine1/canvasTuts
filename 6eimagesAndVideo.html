@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Images and Video</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        // clip()  creates new clipping region, calculating intersection of the current clipping region and the area described by the current path. New clipping region replaces current clipping region.
+        window.onload = function () {
+            var theCanvas = document.getElementById('canvas1');
+            if (theCanvas && theCanvas.getContext) {
+                var ctx = theCanvas.getContext("2d");
+                if (ctx) {
+                    // draw an image
+                    var srcImg = document.getElementById("img1");
+
+                    // create a circle clipping path
+                    // ctx.arc(ctx.canvas.width / 2, ctx.canvas.height / 2, 150, 0, 2 * Math.PI); // toggle these 2 on off with arbitrary clipping path
+                    // ctx.clip();
+
+                    // create an arbitrary clipping path
+                    ctx.beginPath();
+                    ctx.moveTo(105, 200);
+                    ctx.lineTo(250, 25);
+                    ctx.lineTo(525, 50);
+                    ctx.lineTo(475, 285);
+                    ctx.closePath();
+                    ctx.clip();
+
+                    ctx.drawImage(srcImg, 0, 0);
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Images and Video</h1>
+    <p>Clipping paths restrict drawing to a particular area of the canvas. Think of clipping paths as masks - areas where the
+        mask is empty show through, while areas where the mask is opaque do not.</p>
+    <p>Any path can be a clipping path. You simply draw the path as normal and then call the context's clip() function to create
+        one.
+    </p>
+    <canvas id="canvas1" width="700" height="300">Your browser does not support canvas.</canvas>
+    <img id="img1" src="images/emerald_bay.jpg" width="715" height="315" style="display:none;" alt="lake surounded with fir trees and mountains in the distance. Looks cold with snow on the ground.">
+</body>
+
+</html>
