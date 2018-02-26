@@ -13,7 +13,6 @@
         // transforms effect all of the drawing operations that come after them, and they are additive-each transform is added to the previous one
         // because they are additive, this is where saving and restoring canvas state can come in handy
         window.onload = function () {
-            var srcImg = document.getElementById("img1");
             var theCanvas = document.getElementById('canvas1');
             if (theCanvas && theCanvas.getContext) {
                 var ctx = theCanvas.getContext("2d");
