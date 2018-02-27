@@ -1,6 +1,4 @@
-#canvas1,
-#canvas2,
-#canvas3,
-#canvas4 {
+[id^=canvas] {
     border: dotted 3px #000;
+    margin: 25px;
 }

@@ -1,0 +1,90 @@
+<!-- Global alpha: opacity setting that affects all drawing operations (values 0 to 1.0)
+Default compositing method: how new consent is drawn onto the canvas surface.
+12 differect compositing methods:
+source-over (default)
+source-in
+source-out
+source-atop
+lighter
+xor
+destination-over
+destination-in
+destination-out
+detination-atop
+darker
+copy -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Compositing Global Alpha</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script>
+        window.onload = function () {
+            var theCanvas = document.getElementById('canvas1');
+            if (theCanvas && theCanvas.getContext) {
+                var ctx = theCanvas.getContext("2d");
+                if (ctx) {
+                    var compMethods = ["source-over", "source-in", "source-out", "source-atop", "lighter", "xor",
+                        "destination-over", "destination-in", "destination-out", "destination-atop", "darker",
+                        "copy"
+                    ];
+
+                    var rects = [{
+                            x: 20,
+                            y: 20,
+                            width: 75,
+                            height: 75
+                        },
+                        {
+                            x: 40,
+                            y: 50,
+                            width: 75,
+                            height: 75
+                        }
+                    ];
+
+                    var method = 0;
+
+                    // draw a series of rectangles
+                    for (var i = 0; i < compMethods.length; i++) {
+                        var cvsName = "canvas" + (i + 1);
+                        var curCanvas = document.getElementById(cvsName);
+                        var exampCtx = curCanvas.getContext("2d");
+
+                        exampCtx.fillStyle = "blue";
+                        exampCtx.fillRect(rects[0].x, rects[0].y, rects[0].width, rects[0].height);
+
+                        exampCtx.globalCompositeOperation = compMethods[method++];
+
+                        exampCtx.fillStyle = "green";
+                        exampCtx.fillRect(rects[1].x, rects[1].y, rects[1].width, rects[1].height);
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Compositing Global Alpha</h1>
+    <p>This demo show how each of the compositing methods affects how drawing operations are made to the canvas.</p>
+    <div>
+        <canvas id="canvas1" width="150" height="150">Your browser does not support canvas.</canvas>
+        <canvas id="canvas2" width="150" height="150">Your browser does not support canvas.</canvas>
+        <canvas id="canvas3" width="150" height="150">Your browser does not support canvas.</canvas>
+        <canvas id="canvas4" width="150" height="150">Your browser does not support canvas.</canvas>
+        <canvas id="canvas5" width="150" height="150">Your browser does not support canvas.</canvas>
+        <canvas id="canvas6" width="150" height="150">Your browser does not support canvas.</canvas>
+    </div>
+    <div>
+        <canvas id="canvas7" width="150" height="150">Your browser does not support canvas.</canvas>
+        <canvas id="canvas8" width="150" height="150">Your browser does not support canvas.</canvas>
+        <canvas id="canvas9" width="150" height="150">Your browser does not support canvas.</canvas>
+        <canvas id="canvas10" width="150" height="150">Your browser does not support canvas.</canvas>
+        <canvas id="canvas11" width="150" height="150">Your browser does not support canvas.</canvas>
+        <canvas id="canvas12" width="150" height="150">Your browser does not support canvas.</canvas>
+    </div>
+</body>
+
+</html>
