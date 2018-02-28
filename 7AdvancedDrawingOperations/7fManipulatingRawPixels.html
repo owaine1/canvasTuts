@@ -17,6 +17,11 @@ Image data array size = height * width * 4 -->
 
 <!-- *****
                 N.B. need to be running this from a server for it to work
+                my example is:
+                using:
+                php -S localhost:3500
+                http://localhost:3500/7AdvancedDrawingOperations/7fManipulatingRawPixels.html
+                
     ***** -->
 
 <!DOCTYPE html>
@@ -31,10 +36,12 @@ Image data array size = height * width * 4 -->
             if (theCanvas && theCanvas.getContext) {
                 var ctx = theCanvas.getContext("2d");
                 if (ctx) {
-                   //fghjf
-                    }
+                    //draw an image directly onto the canvas at the top left
+                    var srcImg = document.getElementById("img1");
+                    ctx.drawImage(srcImg, 0, 0, ctx.canvas.width, ctx.canvas.height);
                 }
             }
+        }
     </script>
 </head>
 
@@ -43,7 +50,7 @@ Image data array size = height * width * 4 -->
     <p>A very powerful feature of the canvas API is the ability to directly access the individual pixels of the image.
         <br>This demo shows how to retrieve the pixel data from canvas, manipulate it, and put it back into the canvas.</p>
     <canvas id="canvas1" width="715" height="315">Your browser does not support canvas.</canvas>
-    <img src="images/tulips.jpg" alt="">
+    <img id="img1" src="/../images/tulips.jpg" width="715" height="315">
 </body>
 
 </html>
