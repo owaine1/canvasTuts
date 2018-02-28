@@ -39,6 +39,27 @@ Image data array size = height * width * 4 -->
                     //draw an image directly onto the canvas at the top left
                     var srcImg = document.getElementById("img1");
                     ctx.drawImage(srcImg, 0, 0, ctx.canvas.width, ctx.canvas.height);
+
+                    // get the image data and convert every 15th row to
+                    // a 5-row strip of inverted pixel
+                    var curRow = 0;
+                    var maxRow = ctx.canvas.height;
+                    var imgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height); // get all the bytes in the image
+                    var pixels = imgData.data;
+
+                    while (curRow < maxRow) {
+                        for (var i = 0; i < 5; i++) {
+                            var thisRowBytes = (curRow + i) * ctx.canvas.width * 4;
+                            for (var j = 0; j < ctx.canvas.width * 4; j += 4) {
+                                pixels[thisRowBytes + j] = 255 - pixels[thisRowBytes + j]; // red
+                                pixels[thisRowBytes + j + 1] = 255 - pixels[thisRowBytes + j + 1]; // green
+                                pixels[thisRowBytes + j + 2] = 255 - pixels[thisRowBytes + j + 2]; // blue
+                            }
+                        }
+                        curRow += 15; // increment current row by 15.
+                    }
+                    // ctx.putImageData(imgData, 0, 0); // see tulipsResult7.png
+                    ctx.putImageData(imgData, 0, 0, 50, 50, 400, 200); // see tulipsRestultDirty7.png
                 }
             }
         }
@@ -50,7 +71,7 @@ Image data array size = height * width * 4 -->
     <p>A very powerful feature of the canvas API is the ability to directly access the individual pixels of the image.
         <br>This demo shows how to retrieve the pixel data from canvas, manipulate it, and put it back into the canvas.</p>
     <canvas id="canvas1" width="715" height="315">Your browser does not support canvas.</canvas>
-    <img id="img1" src="/../images/tulips.jpg" width="715" height="315">
+    <img id="img1" src="/../images/tulips.jpg" alt="A field of tulips. A bright blue sky in the background." width="715" height="315">
 </body>
 
 </html>
