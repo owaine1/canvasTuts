@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Basic Animation</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script type="text/javascript">
+        console.log('hello');
+
+        // this example is called single buffering.
+        // All the animation is taking place directly on the page.
+        // there's no buffer where we are drawing everything and copying it onto the canvas.
+        var rectW = 40;
+        var rectX = -rectW;
+        var rectY = 200;
+        var canvas = null;
+        var context = null;
+
+        // setup
+        function init() {
+            canvas = document.getElementById('testCanvas');
+            context = canvas.getContext('2d');
+
+            blank();
+
+            context.fillStyle = "yellow";
+            context.fillRect(rectX, rectY, rectW, rectW);
+            setInterval(anim, 30);
+        }
+        // just fills in background
+        function blank() {
+            context.fillStyle = "cyan";
+            context.fillRect(0, 0, context.canvas.width, context.canvas.height);
+        }
+
+        function anim() {
+            if (rectX < context.canvas.width) {
+                blank();
+                rectX += 5;
+                context.fillStyle = "yellow";
+                context.strokeStyle = "red";
+                context.lineWidth = 3;
+                context.fillRect(rectX, rectY, rectW, rectW);
+                context.strokeRect(rectX, rectY, rectW, rectW);
+            } else rectX = -rectW; // puts rect back off the screen
+        }
+    </script>
+</head>
+
+<body onload="init()">
+    <h1>Basic Animation</h1>
+    <canvas id="testCanvas" width="400" height="400">Canvas is not supported</canvas>
+</body>
+
+</html>
